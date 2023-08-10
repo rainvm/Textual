@@ -1,15 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import glcanvas from './webgl-demo'
 import reportWebVitals from './reportWebVitals';
-import Canvas from "./App";
+import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React>
-    <Canvas />
-  </React>
+  <React.StrictMode>
+    <App id="MyCanvas" />
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

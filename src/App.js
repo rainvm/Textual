@@ -1,20 +1,10 @@
-import './App.css';
-import {useRef, useEffect} from "react";
+import React from 'react'
+import Canvas from './Canvas'
 
 function App() {
-  return (
-      <div>
-        <canvas id="glcanvas" width="640" height="480" color="blue"></canvas>
-          <script src="../src/webgl-demo.js" type="module"></script>
-      </div>
-  )
-}
-
-const Canvas = props => {
-
-    const canvasRef = useRef(null)
 
     const draw = (ctx, frameCount) => {
+        resizeCanvasToDisplaySize(ctx.canvas)
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
         ctx.fillStyle = '#000000'
         ctx.beginPath()
@@ -22,27 +12,21 @@ const Canvas = props => {
         ctx.fill()
     }
 
-    useEffect(() => {
-
-        const canvas = canvasRef.current
-        const context = canvas.getContext('2d')
-        let frameCount = 0
-        let animationFrameId
-
-        //Our draw came here
-        const render = () => {
-            frameCount++
-            draw(context, frameCount)
-            animationFrameId = window.requestAnimationFrame(render)
-        }
-        render()
-
-        return () => {
-            window.cancelAnimationFrame(animationFrameId)
-        }
-    }, [draw])
-
-    return <canvas ref={canvasRef} {...props}/>
+    return <Canvas draw={draw} />
 }
 
-export default Canvas
+function resizeCanvasToDisplaySize(canvas) {
+
+    const { width, height } = canvas.getBoundingClientRect()
+
+    if (canvas.width !== width || canvas.height !== height) {
+        canvas.width = width
+        canvas.height = height
+        return true // here you can return some usefull information like delta width and delta height instead of just true
+        // this information can be used in the next redraw...
+    }
+
+    return false
+}
+
+export default App
