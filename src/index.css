@@ -12,12 +12,15 @@ code {
     monospace;
 }
 
-/*#MyCanvas {*/
-/*  height: 99vh;*/
-/*  width: 99vw;*/
-/*}*/
+canvas {
+  height: inherit;
+  width: inherit;
+}
 
 #root {
   height: 99vh;
   width: 99vw;
+}
+html, body, #app, #app>div {
+  height: 99vh;
 }
