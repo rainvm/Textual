@@ -1,7 +1,7 @@
 {
   "name": "textual",
   "version": "0.1.0",
-  "homepage": "https://rainvm.github.io/textual",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "eslint": "^8.47.0",
