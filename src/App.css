@@ -38,3 +38,12 @@
     transform: rotate(360deg);
   }
 }
+
+canvas {
+  height: inherit;
+  width: inherit;
+}
+#sidebar{
+  grid-row: 1/-1;
+  grid-column: 1;
+}

@@ -12,15 +12,9 @@ code {
     monospace;
 }
 
-canvas {
-  height: inherit;
-  width: inherit;
-}
-
 #root {
-  height: 99vh;
-  width: 99vw;
-}
-html, body, #app, #app>div {
-  height: 99vh;
+  height: 99.65vh;
+  width: 99.65vw;
+  display: grid;
+  grid-template-columns: 15% 85%;
 }
