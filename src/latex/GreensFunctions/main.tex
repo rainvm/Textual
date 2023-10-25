@@ -1,0 +1,47 @@
+\documentclass[12pt]{article}
+
+\input{preamble/packages}
+\input{preamble/newcommands}
+\input{preamble/defs}
+\input{preamble/env}
+
+\title{Green's Functions}
+\author{Ryan Coyne}
+\date{\today}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\makeindex
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\input{include/1.tex}
+
+\input{include/2.tex}
+
+\input{include/3.tex}
+
+\input{include/4.tex}
+
+\appendix
+
+\input{include/appendix.tex}
+
+\addcontentsline{toc}{section}{References}
+
+\bibliographystyle{alpha}
+\bibliography{include/biblio}
+Greenberg, Michael D. Applications of Green’s Functions in Science and Engineering. Dover
+
+Publications, 2015.\\
+Roach, G. F. Green’s Functions. Cambridge University Press, 1982.
+
+
+\printindex
+
+\end{document}

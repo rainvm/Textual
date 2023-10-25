@@ -1,0 +1,309 @@
+\section{The Dirac delta function}
+\setcounter{example}{0}
+\subsection{Delta Sequences}
+In physics, we often consider the idea of a point mass. Suppose we have a unit point mass at \(x=0\) with mass density given by \(w(x)\). We are interested in the mass but do not know the details of its density. We do, however, know that the \(w(x)\) will be highly localized in space and that 
+\begin{equation}
+    \int_{-\infty}^{\infty} w(x) dx = 1,
+\end{equation}
+so that the net mass is unity.
+
+We expect two highly concentrated unit mass densities to produce masses with nearly identical physical effects. As such, we might simplify the problem by deciding, a priori, on a definite form for \(w\), such as
+\begin{equation}
+    w_k(x) = \begin{cases}
+        \frac{k}{2}, & |x|<\frac{1}{k}\\
+        0, & |x|>\frac{1}{k}
+    \end{cases}
+\end{equation}
+or
+\begin{equation}
+    w_k(x)=\frac{k}{\pi (1+k^2x^2)}\,,
+\end{equation}
+where \(k\) is some larger natural number. In figures 3.1 and 3.2, we see that \(w\) becomes highly concentrated at \(x=0\) when \(k\) is large.
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \def \a {1}
+        \def \b {2}
+        \def \c {3}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = \(x\),
+            ylabel = \(w_k(x)\),
+            ymin = -0.18,
+            ymax = 4.3,
+            xmin = -1,
+            xmax = 1,
+            x label style = {anchor=north},
+            xtick = {0},
+            ytick= {0},
+        ] 
+            \addplot [mark=none] coordinates {(1/2, 0) (1/2, 1)};
+            \addplot [mark=none] coordinates {(-1/2, 0) (-1/2, 1)};
+            \addplot [mark=none] coordinates {(-1/2, 1) (1/2, 1)};
+            \node at (axis cs:0.62, 0.32) {$k=2$};
+            \addplot [mark=none] coordinates {(1/4, 0) (1/4, 4/2)};
+            \addplot [mark=none] coordinates {(-1/4, 0) (-1/4, 4/2)};
+            \addplot [mark=none] coordinates {(-1/4, 4/2) (1/4, 4/2)};  
+            \node at (axis cs:0.36, 1.5) {$k=4$};  
+            \addplot [mark=none] coordinates {(1/8, 0) (1/8, 8/2)};
+            \addplot [mark=none] coordinates {(-1/8, 0) (-1/8, 8/2)};
+            \addplot [mark=none] coordinates {(-1/8, 8/2) (1/8, 8/2)};  
+            \node at (axis cs:0.25, 3) {$k=8$};  
+            \node at (axis cs:-0.04, -0.08) {0};
+            \node at (axis cs:-0.05, 4.1) {4};
+            \node at (axis cs:0.5, -0.1) {1/2};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Mass Density; eq 3.2}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = middle,
+            xlabel = \(x\),
+            ylabel = \(w_k(x)\),
+            x label style = {anchor=north},
+            xtick = {0},
+            ytick= {0},
+            ymin=0,
+            ymax = 2.65,
+            restrict y to domain=0:2.65
+        ]
+            \addplot[
+                samples=200, 
+                smooth,
+                domain = -1.5:1.5
+                ] 
+                {2/(pi*(1+2^2*x^2))};
+                \node at (axis cs:0.75, 0.32) {$k=2$};
+            \addplot[
+                samples=200, 
+                smooth,
+                domain = -1.5:1.5
+                ] 
+                {4/(pi*(1+4^2*x^2))};
+                \node at (axis cs:0.43, 0.65) {$k=4$};
+            \addplot[
+                samples=200, 
+                smooth,
+                domain = -1.5:1.5
+                ] 
+                {8/(pi*(1+8^2*x^2))};
+                \node at (axis cs:0.27, 1.5) {$k=8$};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Mass Density;  eq. 3.3}
+\end{figure}
+
+If we let \(k \rightarrow \infty\), then the mass distribution approaches our idea of a point mass at \(x=0\). We would like to write
+\begin{equation} \label{eq:deltaSeqLim}
+    \delta(x) \overset{?}{=} \lim_{k\rightarrow \infty} w_k(x),
+\end{equation}
+where \(\d(x)\) is the \df{Dirac delta function}. This ``definition'' feels intuitive but is not a rigorous definition of the Dirac delta function because the limit is infinite for \(x=0\). That is, the right-hand side is not a function. We instead define the Dirac delta function, \(\d(x)\), in the following way
+\begin{equation}\label{eq:seqDef}
+    \begin{split}
+        \lim_{k\rightarrow \inf}\intR h(x)w_k(x)dx &= \intR h(x)\d(x)dx \\
+        &= h(0),
+    \end{split}
+\end{equation}
+where \(h\) is infinitely differentiable and vanishes outside some finite interval. We call any \(w_k(x)\) which has this property a \df{\(\d\)-sequence}.  This way of defining the Dirac delta function is more rigorous while still being intuitive. However, keep in mind that the delta function is not a function. 
+
+We would like to be able to check that a particular sequence \(w_k(x)\) is a \(\d\)-sequence. We can do this by showing that equation (\ref{eq:seqDef}) holds for \(w_k(x)\). The following theorem allows us to easily construct \(\d\)-sequences. First, we need a definition and a theorem.
+
+% \begin{definition}
+%     A function, \(f\), is \df[uniform continuity]{uniformly continuous} if for all \(\e>0\), a \(\d >0\) exists such that, if \(|a-b|<\d\), then \(|f(a)-f(b)|<\e\), for all \(a,b\in X\).
+% \end{definition}
+
+\begin{definition}
+    A function, \(f: A \to \mathbb{R}\), is \df{continuous} at point \(a \in A\) for all \(\e>0\) if there exists a \(\d>0\) such that for all \(x\in A\), \(|x-y|<\d\) implies \(|f(x)-f(y)|<\e\).
+\end{definition}
+
+\begin{definition}
+    A sequence of functions, \(f_k\), \df[uniform convergence]{converges uniformly} to the function, \(f(x)\), on \([a,b]\) if for any \(\e>0\) there exists an \(n\) such that \(|f_n(x)-f(x)|< \e\) for all \(x\in[a,b]\). (Note: This is a stronger notion of convergence than pointwise convergence.)
+\end{definition}
+
+\begin{theorem}
+    If \(f_k(x)\) converges uniformly to \(f(x)\) on \([a,b]\), then
+    \begin{equation*}
+        \lim_{k\to\inf} \int_{a}^{b}f_k(x) dx = \int_{a}^{b} \lim_{k\to\inf}  f_k(x)dx = \int_{a}^{b} f(x) dx.
+    \end{equation*}
+\end{theorem}
+
+\begin{theorem}\label{th:assertion}
+    If \(w(x)\) is non-negative \(\intR w(x) dx = 1\), and \(w(x)=O(1/|x|^{1+\a})\) (see appendix \ref{sec:BigO} for a description of big O notation) as \(|x| \rightarrow \inf\) with \(\a>0\), then \( w_k(x) \equiv kw(kx)\) is a \(\d\)-sequence.
+\end{theorem}
+\begin{proof}    
+    We have
+    \begin{equation}\label{eq:deltaseqProof1}
+        \begin{split}
+            \lim_{k\rightarrow \inf}\intR w_k(x)h(x) dx &= \underbrace{\lim_{k\rightarrow\inf} \intR w_k(x)[h(x)-h(0)]dx}_I+ \underbrace{\lim_{k\rightarrow\inf} \intR w_k(x)h(0)dx}_J.
+        \end{split}
+    \end{equation}
+    Consider \(J\),
+    \begin{equation}
+        \begin{split}
+            J &= h(0) \lim_{k\rightarrow\inf} \intR kw(kx)dx, \ \ \text{Let  }\xi =kx\\
+            &=h(0)\intR w(\xi) d\xi\\
+            &= h(0).
+        \end{split}
+    \end{equation}
+    Next, we wish to show that \(I=0\), so that the right hand side of equation (\ref{eq:deltaseqProof1}) is \(h(0)\). Let \(\epsilon > 0\), and since \(h\) is continuous at \(x=0\), there must exist a number \(\d>0\) such that \(|h(x)-h(0)|<\epsilon\) whenever \(|x-0|=|x|<\d\). Breaking up the integral \(I\),
+    \begin{equation}
+        \begin{split}
+            I &= \underbrace{\lim_{k\rightarrow \inf} \int_{-\inf}^{-\d} w_k(x)(h(x)-h(0)) dx}_{I_1} + \underbrace{\lim_{k\rightarrow \inf} \int_{-\d}^{\d} w_k(x)(h(x)-h(0)) dx}_{I_2} \\ & + \underbrace{\lim_{k\rightarrow \inf} \int_{\d}^{\inf} w_k(x)(h(x)-h(0)) dx}_{I_3}.\\
+        \end{split}
+    \end{equation}
+    Note that \(w_k\) converges uniformly to 0 for \(x\neq 0\) and thus, \(I_1=I_3 =0\). Since \(h\) is continuous \(|h(x)-h(0)|<\e\) whenever \(|x-0|=|x|<\d\)
+    \begin{equation*}
+        \begin{split}
+            \left| \lim_{k\to \inf} \int_{-\d}^{\d} w_k(x)(h(x)-h(0))dx \right| & \leq  \lim_{k\to \inf} \int_{-\d}^{\d} w_k(x)|h(x)-h(0)|dx \\
+            & \leq \lim_{k\to \inf} \e\int_{-\d}^{\d}w_k(x)dx\\
+            &= \e \lim_{k\to \inf} \int_{-k\d}{k\d} kw(kx)dx\\
+            &= \e \lim_{k\to \inf} \int_\mathbb{R} kw(kx)dx\\
+            &= \e.
+        \end{split}
+    \end{equation*}
+    Since \(\e\) may be chosen as small as we like, the integral must vanish. Thus,
+    \begin{equation}
+        \lim_{k\rightarrow \inf}\intR w_k(x)h(x) dx = h(0).
+    \end{equation}
+
+
+\end{proof}
+
+\input{include/3.1.tex}
+
+\subsection{The Dirac Delta Function as a Generalized Function}
+The Dirac delta function can also be defined as a generalized function. To understand this, we will begin by defining some terms.
+
+\begin{definition}
+     A \df{closed region} is one that includes its boundary.
+\end{definition}
+
+\begin{definition}
+    The \df{support} of a function, \(f\), is the subset, \(\mathcal{S}\), of the domain of \(f\) where \(f\) is nonzero.
+\end{definition}
+
+\begin{definition}
+    A function has \df{compact support} if its support is closed and bounded.
+\end{definition}
+We will denote the space of infinitely differentiable functions with compact support by \(\mathcal{D}\).
+
+\begin{definition}
+    A \df{continuous functional} is a functional \(\mathcal{F}\) on \(\mathcal{D}\), is a continuous functional if for any functional sequence \(g_k\) in \(\mathcal{D}\) which converges to \(g\) in \(\mathcal{D}\) as \(k \to \infty\), then the numerical sequence \(F(g_k)\) converges to \(F(g)\).
+\end{definition}
+
+\begin{definition}
+    \df[generalized function]{Generalized functions} are linear functionals that are continuous on \(\mathcal{D}\).
+\end{definition}
+
+We consider the following functional,
+\begin{equation}\label{eq:generalizedFunction}
+    \mathcal{F}(h) = \int_{-\infty}^{\infty} g(x)h(x)dx,
+\end{equation}
+where \(g\) is some fixed integrable function. This functional assigns a numerical value, \(\mathcal{F}(h)\), for each function \(h\) within the domain, \(\mathcal{D}\), of \(\mathcal{F}\).
+
+\begin{example}
+    Suppose \(\mathcal{F}(h)\) is the integral of \(h\) from \(\xi\) to \(\infty\),
+    \begin{equation}
+        \int_{\infty}^{\infty} g(x)h(x)dx = \int_{\xi}^{\infty} h(x) dx.
+    \end{equation}
+    Then, \(g(x)\) is equivalent to the \df{Heaviside step function},
+    \begin{equation}
+        H(x) = \begin{cases}
+            1, & x>0\\
+            0, & x<0\\
+            \frac{1}{2}, & x=0,
+        \end{cases}
+    \end{equation}
+    which is a function in the classical sense. \footnote{We have defined \(H(0)\) to be \(\frac{1}{2}\), which is a common convention. However, for our purposes, the value at any particular point is not important since we are only ever interested in integrating the function.}    
+\end{example}
+
+If \(\mathcal{F}(h)\) is \(h(0)\) so that
+\begin{equation}\label{eq:introtodelta}
+    \int_{-\infty}^{\infty}g(x)h(x) dx=h(0)
+\end{equation}
+then it can be shown that there is no function, \(g(x)\), which exists such that equation (\ref{eq:introtodelta}) is true for all functions, \(h(x)\), in the domain, \(\mathcal{D}\). We call \(g\) defined by equation (\ref{eq:introtodelta}) a generalized function, and in particular, it is the Dirac delta function. As such, \(\delta\) is defined in the following way,
+\begin{equation}\label{eq:deltadef}
+    \int_{-\infty}^{\infty} \delta(x)h(x) dx = h(0)
+\end{equation}
+for all \(h\in \mathcal{D}\).
+
+Although \(\delta(x)\) has support only at \(x=0\), it can be adjusted to have support at any point by shifting the argument. Thus, \(\delta(x-\xi)\) acts at \(x=\xi\), \footnote{By saying that \(\d\) acts at \(x=\x\), we mean that \(\d(x-\x)\) has support only at \(x=\x\) and 
+\begin{equation*}
+    \int_{-\infty}^{\infty} \delta(x - \x )h(x) dx = h(\xi).
+\end{equation*} }
+\begin{equation}
+    \int_{-\inf}^{\infty} \delta(x-\xi)h(x)dx = h(\xi).
+\end{equation}
+
+\begin{definition}
+    We define the derivative of a generalized function by integrating by parts
+    \begin{equation}
+            \intR g'(x)h(x) dx= g(x)h(x)\biggr\rvert_{-\infty}^{\infty} - \intR g(x)h'(x)dx.
+    \end{equation}
+\end{definition}
+The integral term is fairly simple to interpret since it is of the same form as equation (\ref{eq:generalizedFunction}), but the boundary term is not as nice because it involves knowing the values of \(g\), which are never known. However, our restriction that \(h\) has compact support gives the intuition that it must vanish at infinity, and since we are integrating from \(-\inf\) to \(\inf\), we define the boundary term to be zero. We define
+\begin{equation}
+    \intR g'(x)h(x)dx = -\intR g(x)h'(x)dx.
+\end{equation}
+For the Dirac delta function, this means
+\begin{equation}
+    \begin{split} \label{eq:deltafirst}
+        \intR \delta'(x-\xi)h(x)dx &= -\intR\delta(x-\xi)h'(x)dx\\
+        &=-h'(\xi).
+    \end{split}
+\end{equation}
+
+
+\begin{theorem} \label{th:deltad}
+    The \(j\)th derivative of the Dirac delta function is defined by
+    \begin{equation}
+         \intR \delta^{(j)}(\xi-x)h(\xi)d\xi = (-1)^jh^{(j)}(x).
+    \end{equation}
+\end{theorem}
+\begin{proof} We prove the statement by induction.\\
+    \textbf{Base step:} Proven to be true for \(k\) = 1 in equation (\ref{eq:deltafirst}).\\
+    \textbf{Induction step:} Let \(k \in \mathbb{N}\) and suppose the statements holds for some \(k\geq 1\). Then,
+    \begin{align*}
+        \intR \delta^{(k+1)}(\xi-x)h(\xi)d\xi &= \d^{(k)}(\xi-x)h(\xi)\bounds{-\inf}{\inf}-\intR \delta^{(k)}(\xi-x)h'(\xi)d\xi\\
+        &=-\intR \delta^{(k)}(\xi-x)h'(\xi)d\xi\\
+        &=-(-1)^{k}(h')^{(k)}(x)\\
+        &=(-1)^{k+1}h^{(k+1)}(x).
+    \end{align*}
+\end{proof}
+
+Note that because of the discontinuity in \(H(x-\xi)\) at the point \(x=\xi\), the derivative of \(H\) does not exist as an ordinary function. However, the previous method does allow us to find \(H'(x-\xi)\) as a generalized function, 
+\begin{equation}
+    \begin{split}
+        \intR H'(x-\xi)h(x)dx &= -\intR H(x-\xi)h'(x)dx\\
+        &=-\int_{\xi}^{\infty}h'(x)dx \\
+        &= h(\xi).
+    \end{split}
+\end{equation}
+Since
+\begin{equation}
+    \intR \delta(x-\xi)h(x)dx=h(\xi)
+\end{equation}
+it must be the case that, in the sense of generalized functions,
+\begin{equation}\label{eq:Hprime}
+    H'(x-\xi) = \delta(x-\xi).
+\end{equation}
+Such equalities between generalized functions, as seen in (\ref{eq:Hprime}), are understood in the sense that if some \(h\) in \(\mathcal{D}\) is multiplied through, and we integrate over \((-\infty, \infty)\) then the result will hold. To wit, we consider generalized functions, \(g_1\) and \(g_2\), to be equal if, for all \(h\in \mathcal{D}\),
+\begin{equation}
+    \intR g_1(x)h(x)dx = \intR g_2(x)h(x)dx.
+\end{equation}
+
+Notice that for all \(n > 0\)
+\begin{equation}
+    x^n\delta(x)=0
+\end{equation}
+as a result of
+\begin{equation}
+    \intR x^n\delta(x)h(x)dx=[x^nh(x)]|_{x=0} = 0.
+\end{equation}
+
+\input{include/3.6.tex}

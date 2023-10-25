@@ -1,0 +1,473 @@
+/*! ../../other/Box.js */
+
+/*! ../../other/CssQuery.js */
+
+/*! ../../utils/NodeIterator.js */
+
+/*! ../../utils/bboxUtils.js */
+
+/*! ../../utils/nodesToNode.js */
+
+/*! ../../utils/objectCreationUtils.js */
+
+/*! ../../utils/pathUtils.js */
+
+/*! ../../utils/regex.js */
+
+/*! ../Element.js */
+
+/*! ../Event.js */
+
+/*! ../NodeFilter.js */
+
+/*! ../config.js */
+
+/*! ../dom/NodeFilter.js */
+
+/*! ../dom/svg/SVGPoint.js */
+
+/*! ../other/Box.js */
+
+/*! ../other/Point.js */
+
+/*! ../utils/defaults.js */
+
+/*! ../utils/mapUtils.js */
+
+/*! ../utils/namespaces.js */
+
+/*! ../utils/objectCreationUtils.js */
+
+/*! ../utils/regex.js */
+
+/*! ../utils/strUtils.js */
+
+/*! ../utils/tagUtils.js */
+
+/*! ./../dom/svg/SVGMatrix.js */
+
+/*! ./Attr.js */
+
+/*! ./CharacterData.js */
+
+/*! ./Comment.js */
+
+/*! ./CustomEvent.js */
+
+/*! ./Document.js */
+
+/*! ./DocumentFragment.js */
+
+/*! ./DocumentType.js */
+
+/*! ./Element.js */
+
+/*! ./Event.js */
+
+/*! ./EventTarget.js */
+
+/*! ./HTMLElement.js */
+
+/*! ./Node.js */
+
+/*! ./NodeIterator.js */
+
+/*! ./Point.js */
+
+/*! ./PointCloud.js */
+
+/*! ./SVGAnimatedLength.js */
+
+/*! ./SVGElement.js */
+
+/*! ./SVGGraphicsElement.js */
+
+/*! ./SVGLength.js */
+
+/*! ./SVGMatrix.js */
+
+/*! ./SVGPoint.js */
+
+/*! ./Text.js */
+
+/*! ./defaults.js */
+
+/*! ./dirname.cjs */
+
+/*! ./dom/Document.js */
+
+/*! ./dom/Window.js */
+
+/*! ./html/HTMLElement.js */
+
+/*! ./html/HTMLImageElement.js */
+
+/*! ./html/HTMLLinkElement.js */
+
+/*! ./html/HTMLParser.js */
+
+/*! ./html/HTMLScriptElement.js */
+
+/*! ./mixins/ChildNode.js */
+
+/*! ./mixins/NonDocumentTypeChildNode.js */
+
+/*! ./mixins/NonElementParentNode.js */
+
+/*! ./mixins/ParentNode.js */
+
+/*! ./mixins/elementAccess.js */
+
+/*! ./pathUtils.js */
+
+/*! ./regex.js */
+
+/*! ./src/config.js */
+
+/*! ./src/dom/Attr.js */
+
+/*! ./src/dom/CharacterData.js */
+
+/*! ./src/dom/Comment.js */
+
+/*! ./src/dom/CustomEvent.js */
+
+/*! ./src/dom/Document.js */
+
+/*! ./src/dom/DocumentFragment.js */
+
+/*! ./src/dom/Element.js */
+
+/*! ./src/dom/Event.js */
+
+/*! ./src/dom/EventTarget.js */
+
+/*! ./src/dom/Node.js */
+
+/*! ./src/dom/NodeFilter.js */
+
+/*! ./src/dom/Text.js */
+
+/*! ./src/dom/Window.js */
+
+/*! ./src/dom/html/HTMLElement.js */
+
+/*! ./src/dom/html/HTMLImageElement.js */
+
+/*! ./src/dom/html/HTMLLinkElement.js */
+
+/*! ./src/dom/html/HTMLParser.js */
+
+/*! ./src/dom/html/HTMLScriptElement.js */
+
+/*! ./src/dom/mixins/ParentNode.js */
+
+/*! ./src/dom/mixins/elementAccess.js */
+
+/*! ./src/dom/svg/SVGElement.js */
+
+/*! ./src/dom/svg/SVGGraphicsElement.js */
+
+/*! ./src/dom/svg/SVGMatrix.js */
+
+/*! ./src/dom/svg/SVGPathElement.js */
+
+/*! ./src/dom/svg/SVGPoint.js */
+
+/*! ./src/dom/svg/SVGSVGElement.js */
+
+/*! ./src/dom/svg/SVGTextContentElement.js */
+
+/*! ./src/factories.js */
+
+/*! ./src/utils/defaults.js */
+
+/*! ./svg/SVGCircleElement.js */
+
+/*! ./svg/SVGElement.js */
+
+/*! ./svg/SVGEllipseElement.js */
+
+/*! ./svg/SVGForeignObjectElement.js */
+
+/*! ./svg/SVGGraphicsElement.js */
+
+/*! ./svg/SVGImageElement.js */
+
+/*! ./svg/SVGLineElement.js */
+
+/*! ./svg/SVGMatrix.js */
+
+/*! ./svg/SVGPathElement.js */
+
+/*! ./svg/SVGPoint.js */
+
+/*! ./svg/SVGRectElement.js */
+
+/*! ./svg/SVGSVGElement.js */
+
+/*! ./svg/SVGTextContentElement.js */
+
+/*! ./textUtils.js */
+
+/*! ./utils/namespaces.js */
+
+/*! fontkit */
+
+/*! image-size */
+
+/*! path */
+
+/*! sax */
+
+/*!**********************!*\
+  !*** external "sax" ***!
+  \**********************/
+
+/*!***********************!*\
+  !*** ./src/config.js ***!
+  \***********************/
+
+/*!***********************!*\
+  !*** external "path" ***!
+  \***********************/
+
+/*!************************!*\
+  !*** ./main-module.js ***!
+  \************************/
+
+/*!*************************!*\
+  !*** ./src/dom/Attr.js ***!
+  \*************************/
+
+/*!*************************!*\
+  !*** ./src/dom/Node.js ***!
+  \*************************/
+
+/*!*************************!*\
+  !*** ./src/dom/Text.js ***!
+  \*************************/
+
+/*!**************************!*\
+  !*** ./src/dom/Event.js ***!
+  \**************************/
+
+/*!**************************!*\
+  !*** ./src/factories.js ***!
+  \**************************/
+
+/*!**************************!*\
+  !*** ./src/other/Box.js ***!
+  \**************************/
+
+/*!**************************!*\
+  !*** external "fontkit" ***!
+  \**************************/
+
+/*!***************************!*\
+  !*** ./src/dom/Window.js ***!
+  \***************************/
+
+/*!****************************!*\
+  !*** ./src/dom/Comment.js ***!
+  \****************************/
+
+/*!****************************!*\
+  !*** ./src/dom/Element.js ***!
+  \****************************/
+
+/*!****************************!*\
+  !*** ./src/other/Point.js ***!
+  \****************************/
+
+/*!****************************!*\
+  !*** ./src/utils/regex.js ***!
+  \****************************/
+
+/*!*****************************!*\
+  !*** ./src/dom/Document.js ***!
+  \*****************************/
+
+/*!*****************************!*\
+  !*** external "image-size" ***!
+  \*****************************/
+
+/*!*******************************!*\
+  !*** ./src/dom/NodeFilter.js ***!
+  \*******************************/
+
+/*!*******************************!*\
+  !*** ./src/other/CssQuery.js ***!
+  \*******************************/
+
+/*!*******************************!*\
+  !*** ./src/utils/defaults.js ***!
+  \*******************************/
+
+/*!*******************************!*\
+  !*** ./src/utils/mapUtils.js ***!
+  \*******************************/
+
+/*!*******************************!*\
+  !*** ./src/utils/strUtils.js ***!
+  \*******************************/
+
+/*!*******************************!*\
+  !*** ./src/utils/tagUtils.js ***!
+  \*******************************/
+
+/*!********************************!*\
+  !*** ./src/dom/CustomEvent.js ***!
+  \********************************/
+
+/*!********************************!*\
+  !*** ./src/dom/EventTarget.js ***!
+  \********************************/
+
+/*!********************************!*\
+  !*** ./src/utils/bboxUtils.js ***!
+  \********************************/
+
+/*!********************************!*\
+  !*** ./src/utils/pathUtils.js ***!
+  \********************************/
+
+/*!********************************!*\
+  !*** ./src/utils/textUtils.js ***!
+  \********************************/
+
+/*!*********************************!*\
+  !*** ./src/dom/DocumentType.js ***!
+  \*********************************/
+
+/*!*********************************!*\
+  !*** ./src/dom/svg/SVGPoint.js ***!
+  \*********************************/
+
+/*!*********************************!*\
+  !*** ./src/utils/PointCloud.js ***!
+  \*********************************/
+
+/*!*********************************!*\
+  !*** ./src/utils/namespaces.js ***!
+  \*********************************/
+
+/*!**********************************!*\
+  !*** ./src/dom/CharacterData.js ***!
+  \**********************************/
+
+/*!**********************************!*\
+  !*** ./src/dom/svg/SVGLength.js ***!
+  \**********************************/
+
+/*!**********************************!*\
+  !*** ./src/dom/svg/SVGMatrix.js ***!
+  \**********************************/
+
+/*!**********************************!*\
+  !*** ./src/utils/nodesToNode.js ***!
+  \**********************************/
+
+/*!***********************************!*\
+  !*** ./src/dom/svg/SVGElement.js ***!
+  \***********************************/
+
+/*!***********************************!*\
+  !*** ./src/utils/NodeIterator.js ***!
+  \***********************************/
+
+/*!************************************!*\
+  !*** ./src/dom/html/HTMLParser.js ***!
+  \************************************/
+
+/*!*************************************!*\
+  !*** ./src/dom/DocumentFragment.js ***!
+  \*************************************/
+
+/*!*************************************!*\
+  !*** ./src/dom/html/HTMLElement.js ***!
+  \*************************************/
+
+/*!*************************************!*\
+  !*** ./src/dom/mixins/ChildNode.js ***!
+  \*************************************/
+
+/*!**************************************!*\
+  !*** ./src/dom/mixins/ParentNode.js ***!
+  \**************************************/
+
+/*!**************************************!*\
+  !*** ./src/dom/svg/SVGSVGElement.js ***!
+  \**************************************/
+
+/*!***************************************!*\
+  !*** ./src/dom/svg/SVGLineElement.js ***!
+  \***************************************/
+
+/*!***************************************!*\
+  !*** ./src/dom/svg/SVGPathElement.js ***!
+  \***************************************/
+
+/*!***************************************!*\
+  !*** ./src/dom/svg/SVGRectElement.js ***!
+  \***************************************/
+
+/*!****************************************!*\
+  !*** ./src/dom/svg/SVGImageElement.js ***!
+  \****************************************/
+
+/*!*****************************************!*\
+  !*** ./src/dom/html/HTMLLinkElement.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./src/dom/mixins/elementAccess.js ***!
+  \*****************************************/
+
+/*!*****************************************!*\
+  !*** ./src/dom/svg/SVGCircleElement.js ***!
+  \*****************************************/
+
+/*!******************************************!*\
+  !*** ./src/dom/html/HTMLImageElement.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./src/dom/svg/SVGAnimatedLength.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./src/dom/svg/SVGEllipseElement.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** ./src/utils/objectCreationUtils.js ***!
+  \******************************************/
+
+/*!******************************************!*\
+  !*** external "./src/utils/dirname.cjs" ***!
+  \******************************************/
+
+/*!*******************************************!*\
+  !*** ./src/dom/html/HTMLScriptElement.js ***!
+  \*******************************************/
+
+/*!*******************************************!*\
+  !*** ./src/dom/svg/SVGGraphicsElement.js ***!
+  \*******************************************/
+
+/*!**********************************************!*\
+  !*** ./src/dom/svg/SVGTextContentElement.js ***!
+  \**********************************************/
+
+/*!************************************************!*\
+  !*** ./src/dom/mixins/NonElementParentNode.js ***!
+  \************************************************/
+
+/*!************************************************!*\
+  !*** ./src/dom/svg/SVGForeignObjectElement.js ***!
+  \************************************************/
+
+/*!****************************************************!*\
+  !*** ./src/dom/mixins/NonDocumentTypeChildNode.js ***!
+  \****************************************************/
